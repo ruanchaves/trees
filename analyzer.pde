@@ -21,6 +21,17 @@ class Analyzer {
         build_tree();
     }
 
+    public float get_leaf_value(int key){
+        String value = mapping.get(key).split(" ")[0];
+        return Float.parseFloat(value);
+    }
+
+    public float get_branch_value(int key){
+        String value = mapping.get(key).split(" ")[1];
+        return Float.parseFloat(value);
+    
+    }
+
     public float get_thickness(int value){
         return (float) value;
     }

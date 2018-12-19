@@ -7,14 +7,15 @@ import java.util.TreeMap;
 class Painter {
 
     Stack<Float> point_stack = new Stack<Float>();
-    float turtle_x;
-    float turtle_y;
-    float turtle_z;
-
+    float turtle_x = 0;
+    float turtle_y = 0;
+    float turtle_z = 0;
+    float angle_increment = (float) Math.PI / 6.0;
     float angle;
+    float rot_angle = 0;
     float walk_step;
     int gen;
-
+    boolean chosen_state = false;
     ArrayList<Float> points;
     String walk;
 
@@ -26,6 +27,10 @@ class Painter {
         this.walk_step = r.walk;
         points = new ArrayList<Float>();
         this.walk = r.result;
+    }
+
+    public void set3(){
+        this.chosen_state = true;
     }
 
     public void save_state(){
@@ -60,7 +65,6 @@ class Painter {
 
     public void paint(){
 
-        float angle_increment = (float) Math.PI / 6.0;
         float vector_x = 0;
         float vector_y = 1;
         float vector_z = 0;
@@ -70,6 +74,7 @@ class Painter {
         float tmp_x = vector_x;
         float tmp_y = vector_y;
         float tmp_z = vector_z;
+
         for(int i = 0; i < walk.length(); i++){
 
             vector_x = 0;
@@ -85,33 +90,32 @@ class Painter {
             if(c == 'X') continue;
             else if(c == 'F') {
                     save_point();
-
-                    //rotacionar no eixo Y com o angulo
-                    vector_x = tmp_x * get_cos(angle) +
-                            tmp_y * 0 +
-                            tmp_z * get_sin(angle);
-                    vector_y = tmp_x * 0 +
-                            tmp_y * 1 +
-                            tmp_z * 0;
-                    vector_z = tmp_x * -get_sin(angle) +
-                            tmp_y * 0 +
-                            tmp_z * get_cos(angle);
-                    tmp_x = vector_x;
-                    tmp_y = vector_y;
-                    tmp_z = vector_z;
-                    //rotacionar no eixo Z com o angulo
-                    vector_x = tmp_x * get_cos(angle) +
-                            tmp_y * -get_sin(angle) +
-                            tmp_z * 0;
-                    vector_y = tmp_x * get_sin(angle) +
-                            tmp_y * get_cos(angle) +
-                            tmp_z * 0;
-                    vector_z = tmp_x * 0 +
-                            tmp_y * 0 +
-                            tmp_z * 1;
-                    tmp_x = vector_x;
-                    tmp_y = vector_y;
-                    tmp_z = vector_z;
+	                    /* //rotacionar no eixo Z com o angulo */
+	                    vector_x = tmp_x * get_cos(angle) +
+	                            tmp_y * -get_sin(angle) +
+	                            tmp_z * 0;
+	                    vector_y = tmp_x * get_sin(angle) +
+	                            tmp_y * get_cos(angle) +
+	                            tmp_z * 0;
+	                    vector_z = tmp_x * 0 +
+	                            tmp_y * 0 +
+	                            tmp_z * 1;
+	                    tmp_x = vector_x;
+	                    tmp_y = vector_y;
+	                    tmp_z = vector_z;
+	                    //rotacionar eixo Y com o angulo
+	                    vector_x = tmp_x * get_cos(rot_angle) +
+	                            tmp_y * 0 +
+	                            tmp_z * get_sin(rot_angle);
+	                    vector_y = tmp_x * 0 +
+	                            tmp_y * 1 +
+	                            tmp_z * 0;
+	                    vector_z = tmp_x * -get_sin(rot_angle) +
+	                            tmp_y * 0 +
+	                            tmp_z * get_cos(rot_angle);
+	                    tmp_x = vector_x;
+	                    tmp_y = vector_y;
+	                    tmp_z = vector_z;
                     vector_x *= walk_step;
                     vector_y *= walk_step;
                     vector_z *= walk_step;
@@ -121,9 +125,16 @@ class Painter {
                     save_point();
             }
             else if(c == '[') {
+                if(chosen_state){
+                    float bottom = (float) Math.PI / 12.0;
+                    float upper = (float) Math.PI / 6.0;
+                    Random rd = new Random();
+                    rot_angle = bottom + rd.nextFloat() * (upper - bottom );
+                }
                 save_state();
             }
             else if(c == ']') {
+                rot_angle = 0;
                 load_state();
             }
             else if(c == '+') {
