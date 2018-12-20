@@ -14,10 +14,10 @@ class Painter {
     float turtle_y = 0;
     float turtle_z = 0;
 
-    // Este é o incremento angular que ocorre quando fazemos "+" ou "-".
-    float angle_increment = (float) Math.PI / 6.0;
+    // Este é o incremento angular que ocorre quando fazemos "+" ou "-". Ele é herdado da função Replacer.
+    float angle_increment;
 
-    // Este é o ângulo de rotação em torno do eixo Z, herdado da função Replacer.
+        // Este é o ângulo de rotação em torno do eixo Z.
     float angle;
 
     // Este é o ângulo de rotação em torno do eixo Y.
@@ -45,7 +45,8 @@ class Painter {
 
         // Herança de variáveis do Replacer
             // Herdamos o ângulo
-	    this.angle = r.angle;
+	    this.angle = 0;
+        this.angle_increment = r.angle;
             // Herdamos o tamanho do passo em F
         this.walk_step = r.walk;
             // Herdamos a string que foi gerada pelas substituições do Replacer
