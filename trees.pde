@@ -7,6 +7,21 @@ String ext = ".txt";
 int limit = 100;
 
 void setup(){
+
+    /*
+
+    PIPELINE :
+
+    TreeMaker -> Replacer -> Analyzer, Painter -> Saver
+
+    TreeMaker : Seleciona uma árvore de uma lista de árvores.
+    Replacer : Executa as regras de substituição em cima do axioma.
+    Analyzer : Analisa a árvore e dá informações sobre cada nó a partir da string gerada por Replacer.
+    Painter : Gera os pontos 3D da árvore a partir da string gerada por Replacer.
+    Saver : Combina os resultados de Analyzer e Painter em um único arquivo.
+
+     */
+
     for(int i = 0; i < limit; i++){
 
         int choice = i;

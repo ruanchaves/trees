@@ -4,6 +4,9 @@ import java.util.TreeMap;
 
 class Saver {
 
+    // Esta função não contém nenhum procedimento complicado, ela contém somente conversões entre estruturas de dados.
+    // Ela simplesmente combina os resultados de Analyzer e Painter em um único arquivo .txt, que é o output final desse programa.
+
     String filename;
     PrintWriter output;
     Map<Integer,String> mapping;

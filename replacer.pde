@@ -4,12 +4,19 @@ import java.util.ArrayList;
 
 class Replacer {
 
-    String axiom;
+    // Esta é a hash table herdada da função TreeMaker, junto com o axioma e a quantidade de iterações.
+    // A partir destes dados, geraremos aqui as substituições.
     HashMap<String, ArrayList<String>> expr;
+    String axiom;
+    int gen;
+
+    // As variáveis abaixo foram herdadas da função TreeMaker.
+    // Elas não tem utilidade nesta função, elas estão aqui somente para
+    // serem passadas para frente, para a função Painter,
+    // que recebe esse objeto Replacer como parâmetro.
     String result;
     float angle;
     float walk;
-    int gen;
 
     Replacer(TreeMaker t){
         this.axiom = t.axiom;
@@ -21,6 +28,7 @@ class Replacer {
     }
 
     public String get_random(String key){
+        // Aqui estamos escolhendo aleatoriamente uma substituição entre as opções possíveis.
         ArrayList<String> value = expr.get(key);
         if(value == null){
             return null;
@@ -33,6 +41,7 @@ class Replacer {
     }
 
     public void generate(){
+        // Aqui estamos executando as substituições. 
         String result = axiom;
         for (int k = 0; k <= this.gen; k++){
             for(String key: expr.keySet()){
