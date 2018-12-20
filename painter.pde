@@ -186,12 +186,9 @@ class Painter {
 
                 // Caso o modo 3D esteja ativado, caracteres [ ativam o ângulo de rotação.
                 // Esta rotação só é realizada quando estamos no começo de uma ramificação.
-                // O ângulo de rotação é um valor aleatório dentro de um intervalo entre 15 e 30 graus.
+                // O ângulo de rotação é um valor de 30 graus.
                 if(chosen_state){
-                    float bottom = (float) Math.PI / 12.0;
-                    float upper = (float) Math.PI / 6.0;
-                    Random rd = new Random();
-                    rot_angle = bottom + rd.nextFloat() * (upper - bottom );
+                    rot_angle = (float) Math.PI / 6.0;
                 }
                 save_state();
             }
