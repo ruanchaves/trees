@@ -24,7 +24,7 @@ void setup(){
 
     for(int i = 0; i < limit; i++){
 
-        int choice = 6;
+        int choice = i;
 
         TreeMaker t = new TreeMaker(choice);
         t.set3();
