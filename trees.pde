@@ -27,14 +27,14 @@ void setup(){
         int choice = i;
 
         TreeMaker t = new TreeMaker(choice);
-        t.set3();
+        /* t.set3(); */
         t.run();
 
         Replacer r = new Replacer(t);
         Analyzer a = new Analyzer(r);
 
         Painter p = new Painter(r);
-        p.set3();
+        /* p.set3(); */
         p.paint();
 
         Saver s = new Saver(a,p);
