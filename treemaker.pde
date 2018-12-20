@@ -49,6 +49,7 @@ class TreeMaker {
         // dependendo do modo 3D estar ligado ou não.
 
         this.expr = new HashMap<String, ArrayList<String>>();
+        choice = 4;
         if(chosen_state == false){
             choice %= 7;
 	        switch(choice){
@@ -168,6 +169,9 @@ class TreeMaker {
         this.walk = float_range(0.25, 3.0);
         this.angle = float_range(0.17, 0.54);
         this.gen = int_range(3,8);
+
+        this.walk = 5.0;
+        this.gen = 20;
     }
 
     public void tree5(){
@@ -188,6 +192,7 @@ class TreeMaker {
         this.angle = float_range(0.10,0.84);
         this.gen = int_range(3,7);
         if(chosen_state) this.walk = float_range(4.0,5.0);
+
     }
 
 }

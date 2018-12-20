@@ -2,9 +2,9 @@ import java.util.Random;
 import java.util.Map;
 import java.util.TreeMap;
 
-String tree_path = "./models/tree2d/tree";
+String tree_path = "./models/id_6/tree";
 String ext = ".txt";
-int limit = 1000;
+int limit = 10;
 
 void setup(){
 
@@ -24,17 +24,17 @@ void setup(){
 
     for(int i = 0; i < limit; i++){
 
-        int choice = i;
+        int choice = 6;
 
         TreeMaker t = new TreeMaker(choice);
-        /* t.set3(); */
+        t.set3();
         t.run();
 
         Replacer r = new Replacer(t);
         Analyzer a = new Analyzer(r);
 
         Painter p = new Painter(r);
-        /* p.set3(); */
+        p.set3();
         p.paint();
 
         Saver s = new Saver(a,p);
